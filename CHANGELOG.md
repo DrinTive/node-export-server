@@ -1,5 +1,17 @@
 # 4.0.0
 
+_Breaking Changes:_
+
+- Reordered the `error` and `info` arguments in the callback of the `startExport` function.
+- Renamed the environment variables for a better representation of their roles (refer to all envs in the README's `Environment Variables` section).
+- Renamed the `HIGHCHARTS_MODULES` environment variable to `HIGHCHARTS_MODULE_SCRIPTS`.
+- Renamed the `HIGHCHARTS_INDICATORS` environment variables to `HIGHCHARTS_INDICATOR_SCRIPTS`.
+- Renamed the `POOL_LISTEN_TO_PROCESS_EXITS` environment variable to `OTHER_LISTEN_TO_PROCESS_EXITS`.
+- Renamed the `customCode` section of the options config to the `customLogic` in order to avoid confusion with the existing `customCode` property within.
+- Renamed the `scripts` property in the `highcharts` section of the options config to the `customScripts`.
+- Renamed the `initPool` function to `initExport` in the main module.
+- Renamed the `init` function to `initPool` in the pool module.
+
 _New Features:_
 
 - Implemented debug mode, including new environment variables, a config section, 'console' event listener, and npm script for debugging the headful Puppeteer browser.
@@ -27,16 +39,9 @@ _Enhancements:_
 - Made corrections for gracefully shutting down resources, including running servers, ongoing intervals, browser instance, created pages, and workers pool.
 - Updated `createImage` and `createPDF` functions with faster execution options including `optimizeForSpeed` and `quality`.
 - Set `waitUntil` to 'domcontentloaded' for `setContent` and `goto` functions to improve performance.
-- Replaced browser's deprecated `isConnected()` with the `onnected` property.
+- Replaced browser's deprecated `isConnected()` with the `connected` property.
 - Added information on all available pool resources.
 - Numerous minor improvements for performance and stability.
-- Changed the `customCode` section of options to `customLogic` in order to avoid confusion with the existing `customCode` property within.
-- Renamed the environment variables for a better representation of their roles (refer to all envs in the README's `Environment Variables` section).
-- Renamed the `HIGHCHARTS_MODULES` and `HIGHCHARTS_INDICATORS` environment variables respectively to `HIGHCHARTS_MODULE_SCRIPTS` and `HIGHCHARTS_INDICATOR_SCRIPTS`.
-- Renamed the `scripts` property of the config options to `customScripts`.
-- Renamed the `initPool` function to `initExport` in the main module.
-- Renamed the `init` function to `initPool` in the pool module.
-- Renamed the environment variable `POOL_LISTEN_TO_PROCESS_EXITS` to `OTHER_LISTEN_TO_PROCESS_EXITS`.
 - Moved the `listenToProcessExits` from the `pool` to the `other` section of the options.
 - Replaced the temporary benchmark module with a simpler server benchmark for evaluating export time.
 - Removed unnecessary separate `body-parser` package (already implemented in Express v4.16+).
@@ -51,8 +56,8 @@ _Enhancements:_
 - Added a new logging level (`5`) for benchmarking logs.
 - Added legacy names of options to the `defaultConfig` and `mapToNewConfig` function in order to support the old, PhantomJS-based structure of options.
 - Added a new process event handler for the `SIGHUP` signal.
-- Added `mapChart` and `ganttChart` constructors in the exporting UI (#503).
-- Reordered the `error` and `info` arguments in the callback of the `startExport` function.
+- Added `mapChart` and `ganttChart` constructors in the exporting UI [(#503)](https://github.com/highcharts/node-export-server/issues/503).
+- Added the series-on-point module [(#532)](https://github.com/highcharts/node-export-server/issues/532).
 - Updates were made to the `config.js` file.
 - Updated the `killPool` function.
 - The `uncaughtException` handler now kills the pool, browser, and terminates the process with exit code 1, when enabled.
@@ -70,8 +75,8 @@ _Enhancements:_
 _Fixes:_
 
 - Fixed `multer` related error: 'Field value too long'.
-- Fixed the SSL handshake error (#307).
-- Fixed missing background color transparency (#492).
+- Fixed the SSL handshake error [(#307)](https://github.com/highcharts/node-export-server/issues/307).
+- Fixed missing background color transparency [(#492)](https://github.com/highcharts/node-export-server/issues/492).
 - Fixed missing `foreignObject` elements issue.
 - Fixed type compatibility issues in the `pairArgumentValue` function, arising from CLI string arguments.
 - Fixed the 'httpsProxyAgent is not a constructor' issue with the `https-proxy-agent` module.
@@ -112,8 +117,8 @@ _Fixes:_
 
 # 3.0.5
 
-- Fixed an issue with transparent backgrounds in PNG exports (#463).
-- Fixed an issue with missing `filename` property (https://github.com/highcharts/highcharts/issues/20370).
+- Fixed an issue with transparent backgrounds in PNG exports [(#463)](https://github.com/highcharts/node-export-server/issues/463).
+- Fixed an issue with missing `filename` property [(#20370)](https://github.com/highcharts/highcharts/issues/20370).
 
 # 3.0.4
 
@@ -121,8 +126,8 @@ _Fixes:_
 
 # 3.0.3
 
-- Fixed an issue with height and width for CSS (#419).
-- Fixed `globalOptions` (#434).
+- Fixed an issue with height and width for CSS [(#419)](https://github.com/highcharts/node-export-server/issues/419).
+- Fixed `globalOptions` [(#434)](https://github.com/highcharts/node-export-server/issues/434).
 - Other smaller fixes.
 
 # 3.0.2
@@ -246,8 +251,8 @@ _Changelog:_
 # 2.0.15
 
 - Added `queueSize` option to `initPool` to set the request overfow queue size.
-- Added option to supply `cdnURL` to build script (#133).
-- Added `;` between included scripts. Fixes map collections (#128).
+- Added option to supply `cdnURL` to build script [(#133)](https://github.com/highcharts/node-export-server/issues/133).
+- Added `;` between included scripts. Fixes map collections [(#128)](https://github.com/highcharts/node-export-server/issues/128).
 - Added `--skipKey` and `--skipToken` CLI options to configure the rate limiter.
 - Added `--queueSize` switch to the CLI options to set the overflow queue size.
 - Fixed issue with silent installs and default values.
